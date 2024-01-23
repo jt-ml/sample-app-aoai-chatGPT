@@ -9,10 +9,14 @@ import { HistoryButton, ShareButton } from "../../components/common/Button";
 import { AppStateContext } from "../../state/AppProvider";
 import { CosmosDBStatus } from "../../api";
 
+import { getUserInfo } from "../../api";
+
 const Layout = () => {
     const [isSharePanelOpen, setIsSharePanelOpen] = useState<boolean>(false);
     const [copyClicked, setCopyClicked] = useState<boolean>(false);
     const [copyText, setCopyText] = useState<string>("Copy URL");
+    const [userId, setUserId] = useState<string>("");
+
     const appStateContext = useContext(AppStateContext)
 
     const handleShareClick = () => {
@@ -42,6 +46,16 @@ const Layout = () => {
 
     useEffect(() => { }, [appStateContext?.state.isCosmosDBAvailable.status]);
 
+    const getUserInfoList = async () => {
+        const userInfoList = await getUserInfo();
+        if (userInfoList.length === 0 ) {
+            setUserId("Unknown");
+        }
+        else {
+            setUserId(userInfoList[0].user_id);
+        }
+    }
+
     return (
         <div className={styles.layout}>
             <header className={styles.header} role={"banner"}>
@@ -55,6 +69,9 @@ const Layout = () => {
                         <Link to="/" className={styles.headerTitleContainer}>
                             <h1 className={styles.headerTitle}>AI assistant for Service Desk</h1>
                         </Link>
+                    </Stack>
+                    <Stack horizontal tokens={{ childrenGap: 3 }}>
+                        <span className={styles.userId}>Welcome: {userId}</span>
                     </Stack>
                     <Stack horizontal tokens={{ childrenGap: 4 }}>
                         {(appStateContext?.state.isCosmosDBAvailable?.status !== CosmosDBStatus.NotConfigured) &&

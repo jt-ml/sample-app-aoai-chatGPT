@@ -97,19 +97,17 @@ const Chat = () => {
     }, [appStateContext?.state.chatHistoryLoadingState])
 
     const getUserInfoList = async () => {
-        console.log("Checking user info ...");
         if (!AUTH_ENABLED) {
             setShowAuthMessage(false);
             return;
         }
         const userInfoList = await getUserInfo();
-        console.log("userInfoList: " + JSON.stringify(userInfoList));
+        console.log("Authorized user: " + userInfoList[0].user_id);
         if (userInfoList.length === 0 && window.location.hostname !== "127.0.0.1") {
             setShowAuthMessage(true);
         }
         else {
             setShowAuthMessage(false);
-            console.log("Authentication is configured: " + userInfoList[0].user_id);
         }
     }
 
