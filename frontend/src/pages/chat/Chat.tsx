@@ -103,7 +103,7 @@ const Chat = () => {
             return;
         }
         const userInfoList = await getUserInfo();
-        console.log("userInfoList: " + userInfoList);
+        console.log("userInfoList: " + JSON.stringify(userInfoList));
         if (userInfoList.length === 0 && window.location.hostname !== "127.0.0.1") {
             setShowAuthMessage(true);
         }
