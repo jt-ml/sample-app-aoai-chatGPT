@@ -38,6 +38,20 @@ const Layout = () => {
         appStateContext?.dispatch({ type: 'TOGGLE_CHAT_HISTORY' })
     };
 
+    const getUserDetails = async () => {
+        const userInfoList = await getUserInfo();
+        if (userInfoList.length === 0 ) {
+            setUserId("Unknown");
+        }
+        else {
+            setUserId(userInfoList[0].user_id);
+        }
+    };
+
+    useEffect(() => {
+        if (userId === '') getUserDetails();
+    }, [userId]);
+
     useEffect(() => {
         if (copyClicked) {
             setCopyText("Copied URL");
@@ -46,15 +60,7 @@ const Layout = () => {
 
     useEffect(() => { }, [appStateContext?.state.isCosmosDBAvailable.status]);
 
-    const getUserInfoList = async () => {
-        const userInfoList = await getUserInfo();
-        if (userInfoList.length === 0 ) {
-            setUserId("Unknown");
-        }
-        else {
-            setUserId(userInfoList[0].user_id);
-        }
-    }
+    
 
     return (
         <div className={styles.layout}>
