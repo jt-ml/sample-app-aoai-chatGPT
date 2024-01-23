@@ -7,7 +7,7 @@ import remarkGfm from 'remark-gfm'
 import rehypeRaw from "rehype-raw";
 import uuid from 'react-uuid';
 import { isEmpty } from "lodash-es";
-// import DOMPurify from 'dompurify';
+import DOMPurify from 'dompurify';
 
 import styles from "./Chat.module.css";
 //import Contoso from "../../assets/Contoso.svg";
@@ -593,8 +593,8 @@ const Chat = () => {
                                     className={styles.chatIcon}
                                     aria-hidden="true"
                                 />
-                                <h1 className={styles.chatEmptyStateTitle}>Start chatting</h1>
-                                <h2 className={styles.chatEmptyStateSubtitle}>This chatbot is configured to answer your questions</h2>
+                                <h1 className={styles.chatEmptyStateTitle}>My Assistant</h1>
+                                <h2 className={styles.chatEmptyStateSubtitle}>This AI is configured to answer your questions</h2>
                             </Stack>
                         ) : (
                             <div className={styles.chatMessageStream} style={{ marginBottom: isLoading ? "40px" : "0px" }} role="log">
@@ -735,8 +735,7 @@ const Chat = () => {
                                 <ReactMarkdown
                                     linkTarget="_blank"
                                     className={styles.citationPanelContent}
-                                    // children={DOMPurify.sanitize(activeCitation.content, {ALLOWED_TAGS: XSSAllowTags})}
-                                    children={activeCitation.content}
+                                    children={DOMPurify.sanitize(activeCitation.content, {ALLOWED_TAGS: XSSAllowTags})}
                                     remarkPlugins={[remarkGfm]}
                                     rehypePlugins={[rehypeRaw]}
                                 />

@@ -1,7 +1,7 @@
 import { FormEvent, useEffect, useMemo, useState, useContext } from "react";
 import { useBoolean } from "@fluentui/react-hooks"
 import { Checkbox, DefaultButton, Dialog, FontIcon, Stack, Text } from "@fluentui/react";
-// import DOMPurify from 'dompurify';
+import DOMPurify from 'dompurify';
 import { AppStateContext } from '../../state/AppProvider';
 
 import styles from "./Answer.module.css";
@@ -185,8 +185,7 @@ export const Answer = ({
                             <ReactMarkdown
                                 linkTarget="_blank"
                                 remarkPlugins={[remarkGfm, supersub]}
-                                // children={DOMPurify.sanitize(parsedAnswer.markdownFormatText, {ALLOWED_TAGS: XSSAllowTags})}
-                                children={parsedAnswer.markdownFormatText}
+                                children={DOMPurify.sanitize(parsedAnswer.markdownFormatText, {ALLOWED_TAGS: XSSAllowTags})}
                                 className={styles.answerText}
                             />
                         </Stack.Item>
