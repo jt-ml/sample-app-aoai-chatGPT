@@ -109,7 +109,7 @@ const Chat = () => {
         }
         else {
             setShowAuthMessage(false);
-            console.log("Authentication is configured: " + userInfoList);
+            console.log("Authentication is configured: " + userInfoList[0].user_id);
         }
     }
 
