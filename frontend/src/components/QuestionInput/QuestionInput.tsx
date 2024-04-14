@@ -42,6 +42,10 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conv
         setQuestion(newValue || "");
     };
 
+    const handleJobSelectionChange = (_ev: React.FormEvent<HTMLSelectElement>, newValue?: string) => {
+        console.log("Job selection: " || newValue);
+    };
+
     const sendQuestionDisabled = disabled || !question.trim();
 
     return (
@@ -67,6 +71,21 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conv
                     <SendRegular className={styles.questionInputSendButtonDisabled}/>
                     :
                     <img src={Send} className={styles.questionInputSendButton}/>
+                }
+            </div>
+            <div className={styles.questionInputJobSelection} 
+                role="select" 
+                tabIndex={0}
+                aria-label="Job posting dropdown"
+            >
+                <label htmlFor="jobSelection">Job posting:</label>
+                { 
+                    
+                    <select onChange={handleJobSelectionChange} id="jobSelection">
+                        <option value="202401">Business System Analyst (#202401)</option>
+                        <option value="202402">Functional Analyst (#202402)</option>
+                        <option value="202403">Network Analyst (#202403)</option>
+                    </select>
                 }
             </div>
             <div className={styles.questionInputBottomBorder} />

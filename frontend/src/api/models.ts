@@ -29,6 +29,7 @@ export type ChatMessage = {
     end_turn?: boolean;
     date: string;
     feedback?: Feedback;
+    job_id?: string;
 };
 
 export type Conversation = {

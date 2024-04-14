@@ -54,3 +54,19 @@
     width: 27px;
     height: 30px;
 }
+
+.questionInputJobSelection {
+    position:absolute;
+    bottom: 10px;
+    left: 20px;
+}
+
+.questionInputJobSelection select {
+    list-style: none;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    height: 30px;
+    margin: 5px;
+    padding: 6px;
+    font-size: 14px;
+}
