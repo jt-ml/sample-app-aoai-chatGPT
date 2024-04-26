@@ -5,7 +5,7 @@ import Send from "../../assets/Send.svg";
 import styles from "./QuestionInput.module.css";
 
 interface Props {
-    onSend: (question: string, id?: string) => void;
+    onSend: (question: string, jobid: string, conversationId?: string) => void;
     disabled: boolean;
     placeholder?: string;
     clearOnSend?: boolean;
@@ -14,6 +14,7 @@ interface Props {
 
 export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conversationId }: Props) => {
     const [question, setQuestion] = useState<string>("");
+    const [jobId, setJobId] = useState<string>("");
 
     const sendQuestion = () => {
         if (disabled || !question.trim()) {
@@ -21,9 +22,9 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conv
         }
 
         if(conversationId){
-            onSend(question, conversationId);
+            onSend(question, jobId, conversationId);
         }else{
-            onSend(question);
+            onSend(question, jobId);
         }
 
         if (clearOnSend) {
@@ -32,7 +33,7 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conv
     };
 
     const onEnterPress = (ev: React.KeyboardEvent<Element>) => {
-        if (ev.key === "Enter" && !ev.shiftKey) {
+        if (ev.key === "Enter" && !ev.shiftKey && !(ev.nativeEvent?.isComposing === true)) {
             ev.preventDefault();
             sendQuestion();
         }
@@ -42,8 +43,9 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conv
         setQuestion(newValue || "");
     };
 
-    const handleJobSelectionChange = (_ev: React.FormEvent<HTMLSelectElement>, newValue?: string) => {
-        console.log("Job selection: " || newValue);
+    const handleJobSelectionChange = (_ev: React.FormEvent<HTMLSelectElement>) => {
+        console.log("Job selection: " || _ev.currentTarget.value);
+        setJobId(_ev.currentTarget.value);
     };
 
     const sendQuestionDisabled = disabled || !question.trim();
@@ -81,10 +83,10 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conv
                 <label htmlFor="jobSelection">Job posting:</label>
                 { 
                     
-                    <select onChange={handleJobSelectionChange} id="jobSelection">
-                        <option value="202401">Business System Analyst (#202401)</option>
-                        <option value="202402">Functional Analyst (#202402)</option>
-                        <option value="202403">Network Analyst (#202403)</option>
+                    <select onChange={handleJobSelectionChange} id="jobSelection"  value={jobId}>
+                        <option value="002">Business System Analyst (#002)</option>
+                        <option value="001">Functional Analyst (#001)</option>
+                        <option value="003">Network Analyst (#003)</option>
                     </select>
                 }
             </div>
