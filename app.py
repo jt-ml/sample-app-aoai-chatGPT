@@ -5,6 +5,7 @@ import logging
 import uuid
 from dotenv import load_dotenv
 import httpx
+import sys
 from quart import (
     Blueprint,
     Quart,
@@ -239,9 +240,9 @@ PROMPTFLOW_ENDPOINT = os.environ.get("PROMPTFLOW_ENDPOINT")
 PROMPTFLOW_API_KEY = os.environ.get("PROMPTFLOW_API_KEY")
 PROMPTFLOW_RESPONSE_TIMEOUT = os.environ.get("PROMPTFLOW_RESPONSE_TIMEOUT", 30.0)
 # default request and response field names are input -> 'query' and output -> 'reply'
-PROMPTFLOW_REQUEST_FIELD_NAME = os.environ.get("PROMPTFLOW_REQUEST_FIELD_NAME", "query")
+PROMPTFLOW_REQUEST_FIELD_NAME = os.environ.get("PROMPTFLOW_REQUEST_FIELD_NAME", "question")
 PROMPTFLOW_RESPONSE_FIELD_NAME = os.environ.get(
-    "PROMPTFLOW_RESPONSE_FIELD_NAME", "reply"
+    "PROMPTFLOW_RESPONSE_FIELD_NAME", "answer"
 )
 # Frontend Settings via Environment Variables
 APP_TITLE = os.environ.get("APP_TITLE", "AI Assistant")

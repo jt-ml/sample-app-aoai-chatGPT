@@ -168,6 +168,7 @@ def format_pf_non_streaming_response(
                         {
                             "role": "assistant",
                             "content": chatCompletion[response_field_name],
+                            "memory" : chatCompletion['memory'],
                         }
                     ]
                 }
@@ -190,9 +191,11 @@ def convert_to_pf_format(input_json, request_field_name, response_field_name):
                 new_obj = {
                     "inputs": {request_field_name: message["content"]},
                     "outputs": {response_field_name: ""},
+                    "outputs": {'memory': ""},
                 }
                 output_json.append(new_obj)
             elif message["role"] == "assistant" and len(output_json) > 0:
                 output_json[-1]["outputs"][response_field_name] = message["content"]
+                output_json[-1]["outputs"]['memory'] = message["memory"]
     logging.debug(f"PF formatted response: {output_json}")
     return output_json
