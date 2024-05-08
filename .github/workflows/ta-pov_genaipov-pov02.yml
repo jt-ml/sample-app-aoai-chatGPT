@@ -66,4 +66,4 @@ jobs:
         with:
           app-name: 'genaipov-pov02'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3FC5F55EA25E4A96BEA08A1816CFAE03 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E0FD3CF3D26143818A71FD0DB3E908BA }}
