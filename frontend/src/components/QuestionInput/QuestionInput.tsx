@@ -12,6 +12,7 @@ import {
 } from "../../api";
 import { AppStateContext } from "../../state/AppProvider";
 import { useBoolean } from "@fluentui/react-hooks";
+import { JobPostingMenu } from "../JobPosting/JobPostingMenu";
 interface Props {
     onSend: (question: string, jobid: string, conversationId?: string) => void;
     disabled: boolean;
@@ -30,7 +31,7 @@ const enum messageStatus {
 export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conversationId }: Props) => {
     const appStateContext = useContext(AppStateContext)
     const [question, setQuestion] = useState<string>("");
-    const [jobId, setJobId] = useState<string>("");
+    const [jobId, setJobId] = useState<string>("002");
     const [messages, setMessages] = useState<ChatMessage[]>([])
     const [processMessages, setProcessMessages] = useState<messageStatus>(messageStatus.NotRunning);
     const [activeCitation, setActiveCitation] = useState<Citation>();
@@ -102,6 +103,12 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conv
         newChat()
     };
 
+    const handleJobPostingMenuChange = (jobId: string) => {
+        console.log("Job selection: " || jobId);
+        setJobId(jobId);
+        newChat()
+    };
+
     const sendQuestionDisabled = disabled || !question.trim();
 
     return (
@@ -138,12 +145,13 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conv
                 { 
                     
                     <select onChange={handleJobSelectionChange} id="jobSelection"  value={jobId}>
-                        <option value="000">Null (#000)</option>
-                        <option value="002">Business System Analyst (#002)</option>
-                        <option value="001">Functional Analyst (#001)</option>
-                        <option value="003">Network Analyst (#003)</option>
+                        {/* <option value="000">Null (#000)</option> */}
+                        <option value="002" selected>Software Development Analyst (#002)</option>
+                        <option value="003">Cybersecurity Architect (#003)</option>
+                        <option value="004">Technology Architect, Cloud & Data Centre (#004)</option>
                     </select>
                 }
+                
             </div>
             <div className={styles.questionInputBottomBorder} />
         </Stack>

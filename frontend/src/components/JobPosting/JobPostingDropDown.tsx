@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
 type DropDownProps = {
-    jobs: string[];
+    //jobs: string[];
+    jobs: {};
     showDropDown: boolean;
     toggleDropDown: Function;
     jobSelection: Function;
@@ -30,7 +31,21 @@ const DropDown: React.FC<DropDownProps> = ({
     return (
         <>
             <div className={showDropDown ? 'dropdown' : 'dropdown active'}>
-                {jobs.map(
+                {Object.keys(jobs).map(
+                    (key: string, index: number): JSX.Element => {
+                        return (
+                            <p
+                                key={index}
+                                onClick={(): void => {
+                                    onClickHandler(key);
+                                }}
+                            >
+                                {key}
+                            </p>
+                        );
+                    }
+                )}
+                {/* {jobs.map(
                     (city: string, index: number): JSX.Element => {
                         return (
                             <p
@@ -43,7 +58,7 @@ const DropDown: React.FC<DropDownProps> = ({
                             </p>
                         );
                     }
-                )}
+                )} */}
             </div>
         </>
     );

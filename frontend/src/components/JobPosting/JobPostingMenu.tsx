@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import DropDown from "./JobPostingDropDown";
 
 interface Props {
-    onChanged: (jobSelection: string) => void;
+    onChanged: (jobId: string) => void;
 }
 
 export const JobPostingMenu = ({onChanged} : Props) => {
     const [showDropDown, setShowDropDown] = useState<boolean>(false);
     const [selectJob, setSelectJob] = useState<string>("");
     const jobs = () => {
-        return ["Business System Analyst (#1234)", "Functional Analyst (#2024)"];
+        return {"002": "Software Development Analyst", 
+        "003": "Cybersecurity Architect",
+        "004": "Technology Architect, Cloud & Data Centre"}
     };
 
     /**
@@ -42,6 +44,20 @@ export const JobPostingMenu = ({onChanged} : Props) => {
         onChanged(job);
     };
 
+    // return (
+    //     <>
+    //         <label htmlFor="jobSelection">Job posting:</label>
+    //         { 
+                    
+    //             <select id="jobSelection">
+    //                 {/* <option value="000">Null (#000)</option> */}
+    //                 <option value="002" selected>Software Development Analyst (#002)</option>
+    //                 <option value="001">Cybersecurity Architect (#003)</option>
+    //                 <option value="003">Technology Architect, Cloud & Data Centre (#004)</option>
+    //             </select>
+    //         }
+    //     </>
+    // )
     return (
         <>
             <div className="announcement">
