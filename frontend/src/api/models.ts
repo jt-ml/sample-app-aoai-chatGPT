@@ -36,6 +36,7 @@ export type ChatMessage = {
 export type Conversation = {
     id: string;
     title: string;
+    jobId: string;
     messages: ChatMessage[];
     date: string;
 }

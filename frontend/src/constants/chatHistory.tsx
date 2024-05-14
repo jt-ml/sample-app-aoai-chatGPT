@@ -3,6 +3,7 @@ import { Conversation } from "../api/models";
 export const chatHistorySampleData: Conversation[] = [
     {
       "id": "1",
+      "jobId": "001",
       "title": "Customer Support Issue And Resolution and Customer Support",
       "messages": [
         {
@@ -22,6 +23,7 @@ export const chatHistorySampleData: Conversation[] = [
     },
     {
       "id": "2",
+      "jobId": "001",
       "title": "Order Inquiry",
       "messages": [
         {
@@ -53,6 +55,7 @@ export const chatHistorySampleData: Conversation[] = [
     },
     {
       "id": "3",
+      "jobId": "001",
       "title": "August Entry 1",
       "messages": [
         {
@@ -72,6 +75,7 @@ export const chatHistorySampleData: Conversation[] = [
     },
     {
       "id": "4",
+      "jobId": "001",
       "title": "August Entry 2",
       "messages": [
         {
@@ -91,6 +95,7 @@ export const chatHistorySampleData: Conversation[] = [
     },
     {
       "id": "5",
+      "jobId": "001",
       "title": "June Entry 1",
       "messages": [
         {
@@ -110,6 +115,7 @@ export const chatHistorySampleData: Conversation[] = [
     },
     {
         "id": "133",
+        "jobId": "001",
         "title": "Order Inquiry",
         "messages": [
           {
@@ -129,6 +135,7 @@ export const chatHistorySampleData: Conversation[] = [
       },
       {
         "id": "233",
+        "jobId": "001",
         "title": "Phone Plan System Reset",
         "messages": [
           {
@@ -160,6 +167,7 @@ export const chatHistorySampleData: Conversation[] = [
       },
       {
         "id": "333",
+        "jobId": "001",
         "title": "System Failure Error",
         "messages": [
           {
@@ -179,6 +187,7 @@ export const chatHistorySampleData: Conversation[] = [
       },
       {
         "id": "433",
+        "jobId": "001",
         "title": "Keyboard Coverage",
         "messages": [
           {
@@ -198,6 +207,7 @@ export const chatHistorySampleData: Conversation[] = [
       },
       {
         "id": "533",
+        "jobId": "001",
         "title": "Color Difference",
         "messages": [
           {
@@ -218,6 +228,7 @@ export const chatHistorySampleData: Conversation[] = [
 
       {
         "id": "1111",
+        "jobId": "001",
         "title": "Customer Support Issue And Resolution and Customer Support",
         "messages": [
           {
@@ -237,6 +248,7 @@ export const chatHistorySampleData: Conversation[] = [
       },
       {
         "id": "21122",
+        "jobId": "001",
         "title": "Order Inquiry",
         "messages": [
           {
@@ -268,6 +280,7 @@ export const chatHistorySampleData: Conversation[] = [
       },
       {
         "id": "3111122",
+        "jobId": "001",
         "title": "August Entry 1",
         "messages": [
           {
@@ -287,6 +300,7 @@ export const chatHistorySampleData: Conversation[] = [
       },
       {
         "id": "4123344",
+        "jobId": "001",
         "title": "August Entry 3",
         "messages": [
           {
@@ -306,6 +320,7 @@ export const chatHistorySampleData: Conversation[] = [
       },
       {
         "id": "51121213",
+        "jobId": "001",
         "title": "June Entry 1",
         "messages": [
           {
@@ -325,6 +340,7 @@ export const chatHistorySampleData: Conversation[] = [
       },
       {
           "id": "131443",
+          "jobId": "001",
           "title": "Order Inquiry",
           "messages": [
             {
@@ -344,6 +360,7 @@ export const chatHistorySampleData: Conversation[] = [
         },
         {
           "id": "2455633",
+          "jobId": "001",
           "title": "Phone Plan System Reset",
           "messages": [
             {
@@ -375,6 +392,7 @@ export const chatHistorySampleData: Conversation[] = [
         },
         {
           "id": "33567565673",
+          "jobId": "001",
           "title": "System Failure Error",
           "messages": [
             {
@@ -394,6 +412,7 @@ export const chatHistorySampleData: Conversation[] = [
         },
         {
           "id": "677433",
+          "jobId": "001",
           "title": "International Coverage",
           "messages": [
             {
@@ -413,6 +432,7 @@ export const chatHistorySampleData: Conversation[] = [
         },
         {
           "id": "578833",
+          "jobId": "001",
           "title": "Color Difference",
           "messages": [
             {
@@ -435,6 +455,7 @@ export const chatHistorySampleData: Conversation[] = [
 
         {
             "id": "34573",
+            "jobId": "001",
             "title": "System Failure Error",
             "messages": [
               {
@@ -454,6 +475,7 @@ export const chatHistorySampleData: Conversation[] = [
           },
           {
             "id": "402042",
+            "jobId": "001",
             "title": "Details",
             "messages": [
               {
@@ -473,6 +495,7 @@ export const chatHistorySampleData: Conversation[] = [
           },
           {
             "id": "03491200",
+            "jobId": "001",
             "title": "Color Difference",
             "messages": [
               {

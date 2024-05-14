@@ -167,6 +167,7 @@ const Chat = () => {
             conversation = {
                 id: conversationId ?? uuid(),
                 title: question,
+                jobId: jobId,
                 messages: [userMessage],
                 date: new Date().toISOString(),
             }
@@ -412,6 +413,7 @@ const Chat = () => {
                     resultConversation = {
                         id: result.history_metadata.conversation_id,
                         title: result.history_metadata.title,
+                        jobId: jobId,
                         messages: [userMessage],
                         date: result.history_metadata.date
                     }
@@ -474,6 +476,7 @@ const Chat = () => {
                     }
                     resultConversation = {
                         id: result.history_metadata.conversation_id,
+                        jobId: jobId,
                         title: result.history_metadata.title,
                         messages: [userMessage],
                         date: result.history_metadata.date

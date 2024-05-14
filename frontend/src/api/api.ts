@@ -58,6 +58,7 @@ export const historyList = async (offset=0): Promise<Conversation[] | null> => {
             const conversation: Conversation = {
                 id: conv.id,
                 title: conv.title,
+                jobId: conv.jobId,
                 date: conv.createdAt,
                 messages: convMessages
             };
