@@ -117,7 +117,8 @@ export const historyGenerate = async (options: ConversationRequest, abortSignal:
         })
     }else{
         body = JSON.stringify({
-            messages: options.messages
+            messages: options.messages,
+            jobId: options.jobId
         })
     }
     const response = await fetch("/history/generate", {

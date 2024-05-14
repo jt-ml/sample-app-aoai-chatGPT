@@ -798,6 +798,7 @@ async def promptflow_request(request):
         }
         # Adding timeout for scenarios where response takes longer to come back
         logging.debug(f"Setting timeout to {PROMPTFLOW_RESPONSE_TIMEOUT}")
+        logging.debug(f"Request: {request}") #todo: jtang to remove this
         async with httpx.AsyncClient(
             timeout=float(PROMPTFLOW_RESPONSE_TIMEOUT)
         ) as client:
@@ -806,6 +807,13 @@ async def promptflow_request(request):
             )
             # NOTE: This only support question and chat_history parameters
             # If you need to add more parameters, you need to modify the request body
+            logging.debug({
+                    f"{PROMPTFLOW_REQUEST_FIELD_NAME}": pf_formatted_obj[-1]["inputs"][
+                        PROMPTFLOW_REQUEST_FIELD_NAME
+                    ],
+                    "chat_history": pf_formatted_obj[:-1],
+                    "jobid": request["jobId"]  
+                }) #todo: jtang to remove this
             response = await client.post(
                 PROMPTFLOW_ENDPOINT,
                 json={
@@ -848,12 +856,14 @@ async def send_chat_request(request):
 
 async def complete_chat_request(request_body):
     if USE_PROMPTFLOW and PROMPTFLOW_ENDPOINT and PROMPTFLOW_API_KEY:
+        logging.debug("Using Promptflow 001")  #todo: jtang to remove this
         response = await promptflow_request(request_body)
         history_metadata = request_body.get("history_metadata", {})
         return format_pf_non_streaming_response(
             response, history_metadata, PROMPTFLOW_RESPONSE_FIELD_NAME
         )
     else:
+        logging.debug("Using Azure OpenAI") #todo: jtang to remove this
         response, apim_request_id = await send_chat_request(request_body)
         history_metadata = request_body.get("history_metadata", {})
         return format_non_streaming_response(response, history_metadata, apim_request_id)
