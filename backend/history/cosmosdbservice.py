@@ -46,13 +46,14 @@ class CosmosConversationClient():
             
         return True, "CosmosDB client initialized successfully"
 
-    async def create_conversation(self, user_id, title = ''):
+    async def create_conversation(self, user_id, job_id, title = ''):
         conversation = {
             'id': str(uuid.uuid4()),  
             'type': 'conversation',
             'createdAt': datetime.utcnow().isoformat(),  
             'updatedAt': datetime.utcnow().isoformat(),  
             'userId': user_id,
+            'jobId': job_id,
             'title': title
         }
         ## TODO: add some error handling based on the output of the upsert_item call
@@ -128,7 +129,7 @@ class CosmosConversationClient():
         else:
             return conversations[0]
  
-    async def create_message(self, uuid, conversation_id, user_id, input_message: dict):
+    async def create_message(self, uuid, conversation_id, user_id, job_id, input_message: dict):
         message = {
             'id': uuid,
             'type': 'message',
@@ -136,6 +137,7 @@ class CosmosConversationClient():
             'createdAt': datetime.utcnow().isoformat(),
             'updatedAt': datetime.utcnow().isoformat(),
             'conversationId' : conversation_id,
+            'jobId': job_id,
             'role': input_message['role'],
             'content': input_message['content']
         }

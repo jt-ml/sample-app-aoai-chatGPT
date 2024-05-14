@@ -938,14 +938,16 @@ async def add_conversation():
             raise Exception("CosmosDB is not configured or not working")
 
         # check for the conversation_id, if the conversation is not set, we will create a new one
+        job_id = request_json.get("jobId", None)
         history_metadata = {}
         if not conversation_id:
             title = await generate_title(request_json["messages"])
             conversation_dict = await cosmos_conversation_client.create_conversation(
-                user_id=user_id, title=title
+                user_id=user_id, job_id=job_id, title=title
             )
             conversation_id = conversation_dict["id"]
             history_metadata["title"] = title
+            history_metadata["jobId"] = job_id
             history_metadata["date"] = conversation_dict["createdAt"]
 
         ## Format the incoming message object in the "chat/completions" messages format
@@ -956,6 +958,7 @@ async def add_conversation():
                 uuid=str(uuid.uuid4()),
                 conversation_id=conversation_id,
                 user_id=user_id,
+                job_id=job_id,
                 input_message=messages[-1],
             )
             if createdMessageValue == "Conversation not found":
@@ -1005,6 +1008,7 @@ async def update_conversation():
         ## Format the incoming message object in the "chat/completions" messages format
         ## then write it to the conversation history in cosmos
         messages = request_json["messages"]
+        job_id = request_json.get("jobId", None)
         if len(messages) > 0 and messages[-1]["role"] == "assistant":
             if len(messages) > 1 and messages[-2].get("role", None) == "tool":
                 # write the tool message first
@@ -1012,6 +1016,7 @@ async def update_conversation():
                     uuid=str(uuid.uuid4()),
                     conversation_id=conversation_id,
                     user_id=user_id,
+                    job_id=job_id,
                     input_message=messages[-2],
                 )
             # write the assistant message
@@ -1019,6 +1024,7 @@ async def update_conversation():
                 uuid=messages[-1]["id"],
                 conversation_id=conversation_id,
                 user_id=user_id,
+                job_id=job_id,
                 input_message=messages[-1],
             )
         else:

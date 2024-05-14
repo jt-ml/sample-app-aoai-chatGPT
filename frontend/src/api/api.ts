@@ -113,7 +113,8 @@ export const historyGenerate = async (options: ConversationRequest, abortSignal:
     if(convId){
         body = JSON.stringify({
             conversation_id: convId,
-            messages: options.messages
+            messages: options.messages,
+            jobId: options.jobId
         })
     }else{
         body = JSON.stringify({
