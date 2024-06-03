@@ -62,14 +62,17 @@ async def favicon():
 async def assets(path):
     return await send_from_directory("static/assets", path)
 
-
+from dotenv import load_dotenv
+load_dotenv()
 # Debug settings
 DEBUG = os.environ.get("DEBUG", "false")
+print(f"DEBUG: {DEBUG}")
 if DEBUG.lower() == "true":
     logging.basicConfig(level=logging.DEBUG)
 
-USER_AGENT = "GitHubSampleWebApp/AsyncAzureOpenAI/1.0.0"
+print(f"Logging level: {logging.getLogger().level}")
 
+USER_AGENT = "GitHubSampleWebApp/AsyncAzureOpenAI/1.0.0"
 
 # Frontend Settings via Environment Variables
 frontend_settings = {
@@ -855,6 +858,5 @@ async def generate_title(conversation_messages):
         return title
     except Exception as e:
         return messages[-2]["content"]
-
 
 app = create_app()

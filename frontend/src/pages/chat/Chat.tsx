@@ -11,6 +11,7 @@ import DOMPurify from 'dompurify'
 
 import styles from './Chat.module.css'
 import Contoso from '../../assets/Contoso.svg'
+import TransLink from "../../assets/translink_logo.svg";
 import { XSSAllowTags } from '../../constants/xssAllowTags'
 
 import {
@@ -751,7 +752,7 @@ const Chat = () => {
           <div className={styles.chatContainer}>
             {!messages || messages.length < 1 ? (
               <Stack className={styles.chatEmptyState}>
-                <img src={ui?.chat_logo ? ui.chat_logo : Contoso} className={styles.chatIcon} aria-hidden="true" />
+                <img src={ui?.chat_logo ? ui.chat_logo : TransLink} className={styles.chatIcon} aria-hidden="true" />
                 <h1 className={styles.chatEmptyStateTitle}>{ui?.chat_title}</h1>
                 <h2 className={styles.chatEmptyStateSubtitle}>{ui?.chat_description}</h2>
               </Stack>

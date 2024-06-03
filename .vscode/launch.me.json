@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "debugpy",
+            "module": "uvicorn",
+            "request": "launch",
+            "console": "integratedTerminal",
+            "args": [
+                "app:app", 
+                "main_swav.py",
+                "--port", "50505",
+                "--reload"
+            ]
+        }
+    ]
+}
